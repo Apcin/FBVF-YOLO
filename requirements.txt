@@ -1,0 +1,25 @@
+# Clean requirements for FBVF-YOLO / YOLOv5-FBV-Fusion
+# Install torch and torchvision separately according to your CUDA version.
+
+numpy>=1.21,<2.0
+opencv-python>=4.7.0
+Pillow>=7.1.2
+PyYAML>=5.3.1
+matplotlib>=3.2.2
+scipy>=1.4.1
+pandas>=1.1.4
+seaborn>=0.11.0
+tqdm>=4.64.0
+requests>=2.23.0
+psutil
+thop
+pycocotools>=2.0.6
+tensorboard>=2.4.1
+protobuf<5
+GitPython>=3.1.30
+
+# Optional experiment logging; keep commented unless you need it.
+# wandb>=0.12.0
+
+# Optional YOLOv5 augmentation package; keep commented unless the code asks for it.
+# albumentations>=1.0.3
