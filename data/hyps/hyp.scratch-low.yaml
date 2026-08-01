@@ -11,6 +11,8 @@ warmup_epochs: 3.0 # warmup epochs (fractions ok)
 warmup_momentum: 0.8 # warmup initial momentum
 warmup_bias_lr: 0.1 # warmup initial bias lr
 box: 0.05 # box loss gain
+nwd_weight: 0.5 # NWD share in box loss; CIoU share is 1 - nwd_weight
+nwd_constant: 12.8 # FFCA-YOLO NWD normalization constant
 cls: 0.5 # cls loss gain
 mask: 1.0 # mask loss gain
 cls_pw: 1.0 # cls BCELoss positive_weight

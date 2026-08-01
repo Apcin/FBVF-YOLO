@@ -44,6 +44,7 @@ from models.common import (
     DWConv,
     DWConvTranspose2d,
     Expand,
+    FEMConcat,
     Focus,
     GhostBottleneck,
     GhostConv,
@@ -446,6 +447,9 @@ def parse_model(d, ch):
             args = [ch[f]]
         elif m is Concat:
             c2 = sum(ch[x] for x in f)
+        elif m is FEMConcat:
+            c2 = sum(ch[x] for x in f)
+            args = [args[0], ch[f[1]]]
         # TODO: channel, gw, gd
         elif m in {Detect, Segment}:
             args.append([ch[x] for x in f])

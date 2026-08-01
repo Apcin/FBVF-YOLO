@@ -407,14 +407,15 @@ def check_git_info(path="."):
 
     try:
         repo = git.Repo(path)
-        remote = repo.remotes.origin.url.replace(".git", "")  # i.e. 'https://github.com/ultralytics/yolov5'
+        remote = repo.remotes.origin.url if "origin" in repo.remotes else repo.remotes[0].url if repo.remotes else None
+        remote = remote.replace(".git", "") if remote else None  # i.e. 'https://github.com/ultralytics/yolov5'
         commit = repo.head.commit.hexsha  # i.e. '3134699c73af83aac2a481435550b968d5792c0d'
         try:
             branch = repo.active_branch.name  # i.e. 'main'
         except TypeError:  # not on any branch
             branch = None  # i.e. 'detached HEAD' state
         return {"remote": remote, "branch": branch, "commit": commit}
-    except git.exc.InvalidGitRepositoryError:  # path is not a git dir
+    except (git.exc.InvalidGitRepositoryError, ValueError):  # path is not a git dir or has invalid git metadata
         return {"remote": None, "branch": None, "commit": None}
 
 
